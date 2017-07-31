@@ -52,7 +52,7 @@ class KubeCtl {
         //$class = ucfirst($lang);
         //return new Lang\.$class($this);
 
-        $class = "Lang\\".ucfirst($lang);
+        $class = "KubeCmd\\Lang\\".ucfirst($lang);
 
         return new $class($this);
 
