@@ -1,0 +1,21 @@
+{
+    "name": "kubecmd/program",
+    "description": "this for run a shell command in docker in order to achive program",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "devying",
+            "email": "huangby19890920@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5"
+    },
+    "autoload":{
+        "psr-4": {
+            "KubeCmd\\": "/src/"
+        }
+    }
+}
