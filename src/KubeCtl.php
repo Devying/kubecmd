@@ -44,7 +44,7 @@ class KubeCtl {
         }
         return self::$instance;
     }
-
+    //return a lang instance
     public function getLang($lang){
         if(!isset($this->langBin[$lang])){
             throw new Exception("Undefined Lang");
