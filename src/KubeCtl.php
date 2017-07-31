@@ -14,7 +14,7 @@ class KubeCtl {
 
     public $lang='';
 
-
+    //define run bin path
     public $langBin=[
         "c"=>"gcc",
         "cpp"=>"g++",
