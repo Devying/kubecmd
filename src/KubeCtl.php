@@ -49,48 +49,8 @@ class KubeCtl {
         if(!isset($this->langBin[$lang])){
             throw new Exception("Undefined Lang");
         }
-        //$class = ucfirst($lang);
-        //return new Lang\.$class($this);
-
         $class = "KubeCmd\\Lang\\".ucfirst($lang);
-
         return new $class($this);
-
-//        switch($lang){
-//            case "c":
-//                $shell = new Lang\C($this);
-//                break;
-//            case "cpp":
-//                $shell = new Lang\Cpp($this);
-//                break;
-//            case "csharp":
-//                $shell = new Lang\Csharp($this);
-//                break;
-//            case "golang":
-//                $shell = new Lang\Golang($this);
-//                break;
-//            case "java":
-//                $shell = new Lang\Java($this);
-//                break;
-//            case "node":
-//                $shell = new Lang\Node($this);
-//                break;
-//            case "oc":
-//                $shell = new Lang\Oc($this);
-//                break;
-//            case "php":
-//                $shell = new Lang\Php($this);
-//                break;
-//            case "python":
-//                $shell = new Lang\Python($this);
-//                break;
-//            case "ruby":
-//                $shell = new Lang\Ruby($this);
-//                break;
-//            default:
-//                throw new Exception("Undefined Lang");
-//        }
-//        return $shell;
     }
 
     public function getLangBin($lang){
@@ -113,6 +73,24 @@ class KubeCtl {
         }
         return $this->langBin[$lang]['run'];
     }
+
+    public function writeFile($path,$files=array()){
+        if(!$path||empty($files)){
+            throw new Exception("Path or Files empty");
+        }
+        foreach ($files as $value) {
+            if(!isset($value['content'])||!isset($value['filename'])||trim($value['filename'])==''){
+                throw new Exception("Files filed error");
+            }
+            if(!is_dir($path)){
+                if(!mkdir($path,0777,true)){
+                    throw new Exception("create dir failed");
+                }
+            }
+            file_put_contents($path."/".$value['filename'], $value['content'])
+        }
+    }
+
     public function runCommand($command,$cwd) {
         $command = $this->shell.$command;
         $descriptorspec = array(
